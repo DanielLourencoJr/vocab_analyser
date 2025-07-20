@@ -34,6 +34,7 @@ Permitir que o usuário leia textos completos e marque palavras que já conhece,
 
 ## Em desenvolvimento
 
+- Aprimoramento da tokenização
 - Autenticação real de usuários
 - API REST acessível por frontend
 - Interface web interativa
