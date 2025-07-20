@@ -19,15 +19,13 @@ Permitir que o usuário leia textos completos e marque palavras que já conhece,
 
 - Rust (Axum, tokio, sqlx)
 - PostgreSQL
-- JavaScript no frontend (futuramente)
+- JavaScript no frontend
 
 ---
 
 ## Funcionalidades atuais
 
-- Leitura de texto `.txt` (modo temporário de testes)
 - Tokenização simples
-- Estimativa de porcentagem do vocabulário conhecido
 - Marcação de palavras como conhecidas/desconhecidas
 - Persistência com PostgreSQL
 - Backend em Rust usando `Axum`
@@ -39,7 +37,6 @@ Permitir que o usuário leia textos completos e marque palavras que já conhece,
 - Autenticação real de usuários
 - API REST acessível por frontend
 - Interface web interativa
-- Remoção do código de leitura de arquivos locais
 
 ---
 
