@@ -22,9 +22,15 @@ async fn main() {
         .allow_methods(Any)
         .allow_headers(Any);
 
-    let db_url = env::var("DATABASE_URL").unwrap();
-    let mut client = Client::connect(&db_url, NoTls).unwrap();
-    let init = db::init_tables(&mut client).unwrap();
+    let db_url = std::env::var("DATABASE_URL").unwrap();
+
+    let mut client = tokio::task::spawn_blocking(move || {
+        let mut client = Client::connect(&db_url, NoTls).unwrap();
+
+        db::init_tables(&mut client).expect("Falha ao criar tabelas");
+
+        client
+    }).await.unwrap();
 
     let app = Router::new()
         .route("/", get(|| async {"Hello, World!"}))
