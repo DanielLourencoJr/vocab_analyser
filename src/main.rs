@@ -22,6 +22,10 @@ async fn main() {
         .allow_methods(Any)
         .allow_headers(Any);
 
+    let db_url = env::var("DATABASE_URL").unwrap();
+    let mut client = Client::connect(&db_url, NoTls).unwrap();
+    let init = db::init_tables(&mut client).unwrap();
+
     let app = Router::new()
         .route("/", get(|| async {"Hello, World!"}))
         .route("/analyze-text", post(analyse_text))

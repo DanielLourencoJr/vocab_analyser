@@ -4,7 +4,7 @@ pub mod vocab_user;
 
 use postgres::{Client, NoTls, Error}; // W: unused import: `NoTls`
 
-fn init_tables(client: &mut Client) -> Result<(), Error> { // W: function `init_tables` is never used
+pub fn init_tables(client: &mut Client) -> Result<(), Error> { // W: function `init_tables` is never used
     client.batch_execute("
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
