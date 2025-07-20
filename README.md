@@ -56,6 +56,7 @@ Exemplo de configuração local no Linux/macOS (bash/zsh):
 
 ```bash
 export DATABASE_URL="postgres://usuario:senha@localhost:5432/nome_do_banco"
+```
 
 **Passos básicos:**
 
