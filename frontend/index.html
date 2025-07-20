@@ -97,7 +97,7 @@
           const status = wordStatusMap[normalized];
 
           if (status === "known" || status === "unknown") {
-            resultHTML += `<span class="${status}" onclick="toggleWord('${word}', this)">${escapeHTML(word)}</span>`;
+            resultHTML += `<span class="${status}" onclick="toggleWord(&quot;${word}&quot;, this)">${escapeHTML(word)}</span>`;
           } else {
             resultHTML += escapeHTML(word);
           }
