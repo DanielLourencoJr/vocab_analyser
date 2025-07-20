@@ -17,7 +17,7 @@ Permitir que o usuário leia textos completos e marque palavras que já conhece,
 
 ## Stack
 
-- Rust (Axum, tokio, sqlx)
+- Rust (Axum, tokio)
 - PostgreSQL
 - JavaScript no frontend
 
