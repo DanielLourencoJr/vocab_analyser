@@ -48,6 +48,15 @@ Permitir que o usuário leia textos completos e marque palavras que já conhece,
 - Rust (`cargo`)
 - PostgreSQL
 
+## Configuração de ambiente
+
+O projeto espera que a variável de ambiente `DATABASE_URL` esteja configurada antes de rodar o backend.
+
+Exemplo de configuração local no Linux/macOS (bash/zsh):
+
+```bash
+export DATABASE_URL="postgres://usuario:senha@localhost:5432/nome_do_banco"
+
 **Passos básicos:**
 
 ```bash
