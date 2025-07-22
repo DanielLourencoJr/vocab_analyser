@@ -96,8 +96,10 @@
 
           const status = wordStatusMap[normalized];
 
+          const escaped_word = JSON.stringify(word);
+          
           if (status === "known" || status === "unknown") {
-            resultHTML += `<span class="${status}" onclick="toggleWord(&quot;${word}&quot;, this)">${escapeHTML(word)}</span>`;
+            resultHTML += `<span class="${status}" onclick='toggleWord(${escaped_word}, this)''>${escapeHTML(word)}</span>`;
           } else {
             resultHTML += escapeHTML(word);
           }
