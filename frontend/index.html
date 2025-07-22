@@ -99,7 +99,12 @@
           const escaped_word = JSON.stringify(word);
           
           if (status === "known" || status === "unknown") {
-            resultHTML += `<span class="${status}" onclick='toggleWord(${escaped_word}, this)''>${escapeHTML(word)}</span>`;
+            resultHTML += `
+              <span 
+                class="${status}" 
+                onclick='toggleWord(${escaped_word}, this)' 
+                data-normalized='${normalized}'>${escapeHTML(word)}
+              </span>`;
           } else {
             resultHTML += escapeHTML(word);
           }
@@ -122,7 +127,6 @@
       async function toggleWord(word, el) {
         let token = tokenizeWithOffsets(word)[0];
         let normalized_word = token.word.toLowerCase();
-        console.log(normalized_word.trim())
 
         const res = await fetch("http://localhost:3000/toggle-word", {
           method: "POST",
@@ -137,8 +141,13 @@
 
         const data = await res.json();
         console.log(data);
-        el.className = data.is_known ? 'known' : 'unknown';
-        analyze();
+        const newStatus = data.status;
+
+        document.querySelectorAll("span").forEach(span => {
+          if (span.dataset.normalized === normalized_word) {
+            span.className = newStatus;
+          }
+        });
       }
     </script>
   </body>
