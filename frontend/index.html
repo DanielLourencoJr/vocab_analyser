@@ -90,7 +90,7 @@
         let resultHTML = "";
         let lastIndex = 0;
         for (const { word, start, end } of tokens) {
-          resultHTML += escapeHTML(originalText.slice(lastIndex, start));
+          resultHTML += escapeHTML(originalText.slice(lastIndex, start)).replace(/\n/g, "<br>");
 
           const normalized = word.toLowerCase();
 
@@ -102,7 +102,7 @@
             resultHTML += `
               <span 
                 class="${status}" 
-                onclick='toggleWord(${escaped_word}, this)' 
+                onclick="toggleWord(${escaped_word}, this)" 
                 data-normalized='${normalized}'>${escapeHTML(word)}
               </span>`;
           } else {
