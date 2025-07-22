@@ -70,7 +70,7 @@
 
       function tokenizeWithOffsets(text) {
         const regex = /[\p{L}\p{N}]+(?:['+][\p{L}\p{N}]+)*/gu;
-        text = text.replace(/’/g, "'"); // igual ao backend
+        text = text.replace(/’/g, "'");
 
         const matches = [...text.matchAll(regex)];
 
@@ -97,12 +97,12 @@
           const status = wordStatusMap[normalized];
 
           const escaped_word = JSON.stringify(word);
-          
+
           if (status === "known" || status === "unknown") {
             resultHTML += `
               <span 
                 class="${status}" 
-                onclick="toggleWord(${escaped_word}, this)" 
+                onclick="toggleWord(this)" 
                 data-normalized='${normalized}'>${escapeHTML(word)}
               </span>`;
           } else {
@@ -124,7 +124,8 @@
       }
 
 
-      async function toggleWord(word, el) {
+      async function toggleWord(el) {
+        let word = el.dataset.normalized;
         let token = tokenizeWithOffsets(word)[0];
         let normalized_word = token.word.toLowerCase();
 
