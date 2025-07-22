@@ -96,14 +96,14 @@
 
           const status = wordStatusMap[normalized];
 
-          const escaped_word = JSON.stringify(word);
+          const escaped_normalized_word = escapeHTMLAttr(normalized);
 
           if (status === "known" || status === "unknown") {
             resultHTML += `
               <span 
                 class="${status}" 
                 onclick="toggleWord(this)" 
-                data-normalized='${normalized}'>${escapeHTML(word)}
+                data-normalized="${escaped_normalized_word}">${escapeHTML(word)}
               </span>`;
           } else {
             resultHTML += escapeHTML(word);
@@ -122,6 +122,15 @@
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;");
       }
+      function escapeHTMLAttr(str) {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
 
 
       async function toggleWord(el) {
